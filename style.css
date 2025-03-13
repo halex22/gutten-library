@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, p, ul {
+  margin: 0;
+}
+
+
+.cover-container {
+  min-height: 300px;
+}
+
+
+.subject-list  {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+
+.book-summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height:56px;
+}
+
+
+.subject-item {
+  text-transform: capitalize;
+}

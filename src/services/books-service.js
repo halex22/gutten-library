@@ -5,13 +5,15 @@ export default class BookService {
 
   static #dataUrl = '/assets/book.json'
 
+  /**
+   * 
+   * @returns {Promise<Book[]>}
+   */
   fetchBooksData() {
     return fetch(BookService.#dataUrl)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
-      // const dataTorReturn =  data.map(entry => this.convertDataToBook(entry)) 
-      // return  data.map(entry => this.convertDataToBook(entry))
+      return  data.map(entry => this.convertDataToBook(entry))
     })
   }
 
@@ -22,9 +24,6 @@ export default class BookService {
     )
   }
 
-  createAuthors(authorsArray) {
-    // logica per create autore
-  }
 
 
 

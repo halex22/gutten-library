@@ -1,6 +1,9 @@
 import Author from "./author.js"
 
 export default class Book{
+  #authors
+  #subjects
+
    /**
     *  class constructor
     * @param {string} title 
@@ -21,10 +24,24 @@ export default class Book{
    * @param {any[]} plainAuthorsArray
    */
   set authors(plainAuthorsArray){
-    const authorObjects = plainAuthorsArray.map(rawAuthor => new Author(
+    this.#authors = plainAuthorsArray.map(rawAuthor => new Author(
       rawAuthor.name, rawAuthor.birth_year, rawAuthor.death_year
     ))
-    this.authors = authorObjects
+  }
+
+  get authors() {
+    return this.#authors
+  }
+
+  get subjects() {
+    return this.#subjects
+  }
+
+  /**
+   * @param {string[]} subjectsArray
+   */
+  set subjects(subjectsArray){
+    this.#subjects = subjectsArray.length < 4 ? subjectsArray : subjectsArray.slice(0, 4)
   }
 
   /**
@@ -34,4 +51,6 @@ export default class Book{
   compareByTitle(otherBook) {
     return this.title.localeCompare(otherBook.title)
   }
+
+
 }
