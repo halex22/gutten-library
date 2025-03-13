@@ -5,7 +5,7 @@ export default class Author {
     this.yod = yod
   }
 
-  canCalculateAge(){
+  get canCalculateAge(){
     return !!this.yob
   }
 
