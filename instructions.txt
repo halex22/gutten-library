@@ -1,0 +1,6 @@
+1.  fetch data and log array's result
+2.  create classes Book and Author
+3.  book attrs:  title, authors, summary (the first one), subjects (array), coverImage
+3.1 author: name, yob, yod => calculate age
+4.  create book cards with available data
+5.  sort book by title 
