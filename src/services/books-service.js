@@ -5,6 +5,13 @@ export default class BookService {
 
   #dataUrl = '/assets/book.json'
 
+  // getRowData(){
+  //   return fetch(this.#dataUrl)
+  //   .then(res => res.json())
+  //   .then(data => data)
+  //   .catch(error => console.error(error))
+  // }
+
   /**
    * 
    * @returns {Promise<Book[]>}
@@ -20,9 +27,14 @@ export default class BookService {
 
   convertDataToBook(dataEntry) {
     return new Book(
-      dataEntry.title, dataEntry.authors, dataEntry.summaries[0] ?? 'summary not available',
+      dataEntry.id, dataEntry.title, dataEntry.authors, dataEntry.summaries[0] ?? 'summary not available',
       dataEntry.subjects, dataEntry.formats['image/jpeg']
     )
+  }
+
+  fetchBookFromId(searchId){
+    return this.fetchBooksData()
+    .then(booksArray => booksArray.find(book => book.id === searchId))
   }
 
 

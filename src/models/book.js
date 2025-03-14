@@ -12,7 +12,8 @@ export default class Book{
     * @param {string[]} subjects 
     * @param {string} cover 
     */
-  constructor(title, rawAuthors, summary, subjects, cover) {
+  constructor(id, title, rawAuthors, summary, subjects, cover) {
+    this.id = id
     this.title = title
     this.authors = rawAuthors
     this.summary = summary
