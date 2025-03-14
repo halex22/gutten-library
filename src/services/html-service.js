@@ -13,12 +13,22 @@ export default class HtmlConstructor {
     const bookContainer = HtmlConstructor.#crateElement('div', 'book-card')
 
     const coverContainer = HtmlConstructor.#crateElement('div', 'cover-container')
+
+    const imgTag = document.createElement('img')
+    imgTag.classList.add('book-img')
+    imgTag.src = bookInstance.cover
+    imgTag.loading = 'lazy'
+    coverContainer.appendChild(imgTag)
+
     const infoContainer = HtmlConstructor.#crateElement('div', 'book-info')
 
-    bookInstance.authors.forEach(author => infoContainer.appendChild(HtmlConstructor.#createAuthor('h3', 'book-title', author)))
+    const bookName = HtmlConstructor.#crateElement('h2', 'book-title', bookInstance.title)
+    infoContainer.appendChild(bookName)
+
+    // bookInstance.authors.forEach(author => infoContainer.appendChild(HtmlConstructor.#createAuthor( author)))
     
-    infoContainer.appendChild(HtmlConstructor.#crateElement('summary','book-summary', bookInstance.summary))
-    infoContainer.appendChild(HtmlConstructor.#createList(bookInstance.subjects))
+    // infoContainer.appendChild(HtmlConstructor.#crateElement('summary','book-summary', bookInstance.summary))
+    // infoContainer.appendChild(HtmlConstructor.#createList(bookInstance.subjects))
 
     bookContainer.append(coverContainer, infoContainer)
     
@@ -44,10 +54,11 @@ export default class HtmlConstructor {
     const container = HtmlConstructor.#crateElement('div', 'author-container')
     const name = HtmlConstructor.#crateElement('h3', 'author-name', authorData.name)
     let lifeSpanInfo = `Date of Birth: ${authorData.yob ?? 'N/A'} - ${authorData.yod ?? 'N/A'}`
-    if (authorData.canCalculateAge) lifeSpanInfo += `(${authorData.age})`
+    if (authorData.canCalculateAge) lifeSpanInfo += ` (${authorData.age}) years`
     const authorInfo = HtmlConstructor.#crateElement('p', 'text', lifeSpanInfo)
-    container.append(name, authorData)
-    return authorInfo
+    container.append(name, authorInfo)
+    console.log(container)
+    return container
   }
 
 
@@ -65,7 +76,4 @@ export default class HtmlConstructor {
     }
     return tag
   }
-
-
-
 }

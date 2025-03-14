@@ -3,18 +3,19 @@ import Book from "../models/book.js"
 export default class BookService {
   constructor() {}
 
-  static #dataUrl = '/assets/book.json'
+  #dataUrl = '/assets/book.json'
 
   /**
    * 
    * @returns {Promise<Book[]>}
    */
   fetchBooksData() {
-    return fetch(BookService.#dataUrl)
+    return fetch(this.#dataUrl)
     .then(res => res.json())
     .then(data => {
       return  data.map(entry => this.convertDataToBook(entry))
     })
+    .catch(error => console.error(error))
   }
 
   convertDataToBook(dataEntry) {
